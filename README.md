@@ -28,18 +28,18 @@ When collecting code coverage from **integration tests running inside Payara Mic
   * Connecting to the JaCoCo agent running in the Payara Micro JVM in arquillian.xml (agent jar is copied via build-test-microbundle profile)
     ```xml
     	<property name="cmdOptions">
-				  -javaagent:target/jacoco/org.jacoco.agent-runtime.jar=output=tcpserver,address=*,port=6300 
-			  </property>
+			-javaagent:target/jacoco/org.jacoco.agent-runtime.jar=output=tcpserver,address=*,port=6300 
+	 	</property>
     ```
   * Triggering a dump of execution data in @AfterAll method in BaseTest
     ```java
     	@AfterAll
-   	static void captureCoverage() throws IOException {
+   		static void captureCoverage() throws IOException {
 		    int port = 6300;
 		    ExecDumpClient jacocoClient = new ExecDumpClient();
 		    ExecFileLoader dump = jacocoClient.dump("localhost", port);
 		    dump.save(new File("./target/jacoco/jacoco-payara-it.exec"), true);
-	   }
+	   	}
     ```
   * Writing the data to `jacoco-payara-it.exec`
 
