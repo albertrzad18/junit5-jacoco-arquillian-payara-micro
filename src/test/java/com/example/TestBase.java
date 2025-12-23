@@ -37,7 +37,7 @@ public abstract class TestBase {
 
 	@AfterAll
 	static void captureCoverage() throws IOException {
-		int port = 6300; //port na ktorym dziala agent jacoco w trybie tcp server
+		int port = 6300;
 
 		ExecDumpClient jacocoClient = new ExecDumpClient();
 		ExecFileLoader dump = jacocoClient.dump("localhost", port);
