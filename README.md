@@ -61,32 +61,6 @@ This approach ensures that **coverage generated inside the application server JV
 
 ---
 
-## 📦 Project Structure
-
-```
-jacoco-payara-micro-example
-├── pom.xml
-├── mvnw / mvnw.cmd
-├── src
-│   ├── main
-│   │   └── java
-│   │       └── com.example
-│   └── test
-│       ├── java
-│       │   ├── *Test.java     # Unit tests
-│       │   └── *IT.java       # Integration tests (Arquillian)
-│       └── resources
-│           └── arquillian.xml
-└── target
-    └── jacoco
-        ├── jacoco-ut.exec
-        ├── jacoco-payara-it.exec
-        ├── jacoco-merged.exec
-        └── coverage-report/
-```
-
----
-
 ## ⚙️ Maven Configuration Highlights
 
 ### Packaging
@@ -152,8 +126,6 @@ This report contains **merged coverage** from:
 
 * Unit tests
 * Integration tests running inside Payara Micro
-
----
 
 ---
 
