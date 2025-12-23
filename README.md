@@ -55,31 +55,6 @@ jacoco-payara-micro-example
 
 ---
 
-## ⚙️ Maven Configuration Highlights
-
-### Packaging
-
-* The project is packaged as a **WAR**
-* A **Payara Micro bundle** is created during the `package` phase
-
-### Testing Strategy
-
-| Test Type         | Tool                        | JVM              |
-| ----------------- | --------------------------- | ---------------- |
-| Unit tests        | Maven Surefire              | Local JVM        |
-| Integration tests | Maven Failsafe + Arquillian | Payara Micro JVM |
-
-### Code Coverage
-
-* JaCoCo agent is attached to:
-
-  * Unit test JVM
-  * Payara Micro JVM (integration tests)
-* Execution data is **merged**
-* A single HTML report is generated
-
----
-
 ## 🔑 Key Points for Coverage with Payara Micro
 
 When collecting code coverage from **integration tests running inside Payara Micro**, the following points are critical:
@@ -109,6 +84,31 @@ When collecting code coverage from **integration tests running inside Payara Mic
   * Writing the data to `jacoco-payara-it.exec`
 
 This approach ensures that **coverage generated inside the application server JVM** is reliably captured and later merged with unit test coverage.
+
+---
+
+## ⚙️ Maven Configuration Highlights
+
+### Packaging
+
+* The project is packaged as a **WAR**
+* A **Payara Micro bundle** is created during the `package` phase
+
+### Testing Strategy
+
+| Test Type         | Tool                        | JVM              |
+| ----------------- | --------------------------- | ---------------- |
+| Unit tests        | Maven Surefire              | Local JVM        |
+| Integration tests | Maven Failsafe + Arquillian | Payara Micro JVM |
+
+### Code Coverage
+
+* JaCoCo agent is attached to:
+
+  * Unit test JVM
+  * Payara Micro JVM (integration tests)
+* Execution data is **merged**
+* A single HTML report is generated
 
 ---
 
