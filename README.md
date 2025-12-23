@@ -94,13 +94,6 @@ jacoco-payara-micro-example
 * The project is packaged as a **WAR**
 * A **Payara Micro bundle** is created during the `package` phase
 
-### Testing Strategy
-
-| Test Type         | Tool                        | JVM              |
-| ----------------- | --------------------------- | ---------------- |
-| Unit tests        | Maven Surefire              | Local JVM        |
-| Integration tests | Maven Failsafe + Arquillian | Payara Micro JVM |
-
 ### Code Coverage
 
 * JaCoCo agent is attached to:
@@ -114,23 +107,7 @@ jacoco-payara-micro-example
 
 ## 🚀 How to Build and Run
 
-### 1️⃣ Prerequisites
-
-Make sure you have:
-
-* Java 17 installed
-* Maven 3.9+
-
-Verify:
-
-```bash
-java -version
-mvn -version
-```
-
----
-
-### 2️⃣ Build the Project
+### 1️⃣ Build the Project
 
 ```bash
  mvn clean package -Pbuild-test-microbundle -DskipTests
@@ -143,7 +120,7 @@ This will:
 
 ---
 
-### 3️⃣ Run Tests with Coverage
+### 2️⃣ Run Tests with Coverage
 
 Use the provided Maven profile:
 
