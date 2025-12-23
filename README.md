@@ -80,6 +80,38 @@ jacoco-payara-micro-example
 
 ---
 
+## 🔑 Key Points for Coverage with Payara Micro
+
+When collecting code coverage from **integration tests running inside Payara Micro**, the following points are critical:
+
+* The **JaCoCo Java agent must be attached to the Payara Micro JVM**, not just the Maven test JVM
+* This is achieved by adding the `-javaagent` argument to **Payara Micro JVM options** configured via **`arquillian.xml`**
+* JaCoCo must be configured in **`tcpserver` mode** so the agent inside Payara Micro can stream execution data
+* Because Payara Micro runs in its own JVM, coverage data **cannot be written automatically when tests finish**
+* Coverage data is explicitly collected in an **`@AfterAll`** method in the Arquillian integration test by:
+
+  * Connecting to the JaCoCo agent running in the Payara Micro JVM in arquillian.xml (agent jar is copied via build-test-microbundle profile)
+    ```xml
+    	<property name="cmdOptions">
+				  -javaagent:target/jacoco/org.jacoco.agent-runtime.jar=output=tcpserver,address=*,port=6300 
+			  </property>
+    ```
+  * Triggering a dump of execution data in @AfterAll method in BaseTest
+    ```java
+    	@AfterAll
+   	static void captureCoverage() throws IOException {
+		    int port = 6300;
+		    ExecDumpClient jacocoClient = new ExecDumpClient();
+		    ExecFileLoader dump = jacocoClient.dump("localhost", port);
+		    dump.save(new File("./target/jacoco/jacoco-payara-it.exec"), true);
+	   }
+    ```
+  * Writing the data to `jacoco-payara-it.exec`
+
+This approach ensures that **coverage generated inside the application server JVM** is reliably captured and later merged with unit test coverage.
+
+---
+
 ## 🚀 How to Build and Run
 
 ### 1️⃣ Prerequisites
